@@ -1,0 +1,70 @@
+.wl-layout {
+  @media (min-width: 320px) {
+    & {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+
+  @media (min-width: 481px) {
+    & {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+
+  @media (min-width: 641px) {
+    & {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  @media (min-width: 961px) {
+    & {
+      padding-left: 8.4rem;
+      padding-right: 8.4rem;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    & {
+      padding-left: 8.4rem;
+      padding-right: 8.4rem;
+    }
+  }
+
+  @media (min-width: 1281px) {
+    & {
+      padding-left: 8.4rem;
+      padding-right: 8.4rem;
+    }
+  }
+}
+
+
+.header-logo {
+  @media (max-width: 410px) {
+    & {
+      width: 140px;
+    }
+  }
+}
+
+.header-btn-small {
+  @media (max-width: 450px) {
+    & {
+      width: 6rem;
+      margin-left: 7px;
+    }
+  }
+}
+
+.model-top-mobile {
+  @media (max-width: 410px) {
+    & {
+      top: 150px;
+      margin-bottom: 30px;
+    }
+  }
+}

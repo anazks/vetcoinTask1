@@ -1,0 +1,140 @@
+.wl-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $dark;
+}
+
+.wl-header-hr {
+  border-bottom: 1px solid #4c4c4c;
+}
+
+//Added by Bishal
+.dropbtn {
+  background-color: $primary;
+  color: white;
+  padding: 11px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-container {
+  display: none;
+  position: absolute;
+  right: 0;
+
+}
+
+.dropdown-content {
+  background-color: $primary;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 220px;
+}
+
+.dropdown-toggle__item-list {
+  padding: 0.6rem 0;
+}
+
+.dropdown-toggle__item {
+  height: 40px;
+  padding-left: 1rem;
+  position: relative;
+  border-left: solid 0px #FFF;
+  color: #FFF;
+}
+
+.dropdown-toogle__item-icon {
+  padding-right: 0.6rem;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 24px;
+  }
+}
+
+.dropdown-toggle__item:hover {
+  color: #FFF;
+  background-color: #24876f;
+  border-left: solid 4px #FFF;
+}
+
+.dropdown-toggle__content-header-close {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@include media-breakpoint-up(lg) {
+  .dropdown:hover .dropdown-content-container {
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #24876f;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .dropdown-toggle__content-header {
+    color: #FFF;
+    padding: 1rem;
+    border-bottom: solid 1px #FFF;
+    position: relative;
+  }
+
+  .dropdown-content-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .dropdown.active {
+    .dropdown-content-container {
+      display: block;
+    }
+  }
+
+  .dropdown-content {
+    height: 100%;
+    width: 80%;
+  }
+  .dropdown-toggle__item {
+    height: 50px;
+  }
+}
+
+.div-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.span-btn {
+  color: $white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.span-btn:hover {
+  background-color: #f1f1f1;
+  color: $primary;
+}
