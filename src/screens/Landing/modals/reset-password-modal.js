@@ -4,16 +4,17 @@ import React, {
 } from "react";
 import { isMobile } from 'react-device-detect';
 import PropTypes from "prop-types";
+import useUserAccount from "../../../hooks/useUserAccount";
 import { useApi } from "../../../utils/hooks";
 import { showAlert } from "../../../utils/notifications";
-import { BASENAME } from '../../../utils/constants';
+import { BASENAME, USERDATA } from '../../../utils/constants';
 
 const IS_DEV = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 const referralLink = IS_DEV ? `${window.location.hostname}:3000${BASENAME}` : `cl-cards.com/waiting-list`;
 
 // Nick - New modal for reset password
-const ResetPasswordModal = ({ resetToken, userName }) => {
-
+const ResetPasswordModal = ({ resetToken, userName }) => {  
+  console.log(resetToken) 
   const [
     newPassword,
     setNewPassword
@@ -29,6 +30,8 @@ const ResetPasswordModal = ({ resetToken, userName }) => {
     isLoading,
     refetch: submitData,
   } = useApi('post', '/v2/account/reset_password', { type: 'ledger' });
+  console.log(data)
+  const { authAccount } = useUserAccount();
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -50,6 +53,10 @@ const ResetPasswordModal = ({ resetToken, userName }) => {
       showAlert({ message, type: 'warning' });
     } else if (data) {
       setResetSuccess(true);
+      const { email, firstName, referlink, created_at:createdAt, ecosystem_uuid:ecosystemUuid } = data;
+      USERDATA.userData = data;
+       authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
+      console.log("------",data)
     }
   }, [data, error]);
 
@@ -112,7 +119,7 @@ const ResetPasswordModal = ({ resetToken, userName }) => {
                 ) : (
                   <>
                     <div>Your password has been changed successfully. You can login into your VetVault now from Already a member.</div>
-                    <button type="submit" className="w-100 btn btn-primary btn-wide" style={{ marginTop: 50 }} >
+                    <button type="submit" className="w-100 btn btn-primary btn-wide" style={{ marginTop: 50 }}>
                       <a href={`http://${referralLink}`}>
                         Close
                       </a>

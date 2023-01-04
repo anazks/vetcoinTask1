@@ -28,7 +28,7 @@ const AlreadyMember = ({ onChangeScreen }) => {
     isLoading,
     refetch: submitData,
   } = useApi('post', '/v2/account/login', { type: 'ledger' });
-  // console.log("hallow---------------",data);
+   console.log("hallow---------------",data);
   const { authAccount } = useUserAccount();
 
   const handleChange = (e) => {
