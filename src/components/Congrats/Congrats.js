@@ -68,10 +68,10 @@ function Congrats() {
                 </div>
                 <div className="social">
 
-                  <img src="/assets/images/twiter.png" alt="" />
-                  <img src="/assets/images/linkedin.png" alt="" />
-                  <img src="/assets/images/facebook.png" alt="" />
-                  <img src="/assets/images/watsap.png" alt="" />
+                  <img src="/assets/images/twitter-ref.svg" alt="" />
+                  <img src="/assets/images/linkedin-ref.svg" alt="" />
+                  <img src="/assets/images/facebook.svg" alt="" />
+                  <img src="/assets/images/whatsapp-ref.svg" alt="" />
 
                 </div>
               </div>
