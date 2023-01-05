@@ -56,7 +56,7 @@ export const links = {
   OptimusCardPrivacyPolicy: 'https://cl-cards.com/waiting-list/optimus-privacy',
   MembersArea: 'https://vetcoin-members.sentinel-digital.com/?uid=',
   ReferLink: 'https://vetcoin-members.sentinel-digital.com//waiting-list/register?ref=',
-  Refaral:"http://localhost:3000/waiting-list/Congrats-Page?uid="
+  Refaral:"http://localhost:3000/waiting-list/referral?uid="
 };
 
 export const EventEmitterName = {

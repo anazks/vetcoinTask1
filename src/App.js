@@ -44,7 +44,7 @@ function App() {
           element={<MasterCardTerms content={termsMasterCard} />}
         />
         <Route exact path="/optimus-privacy" element={<OptimusCardPrivacyPolicy />} />
-        <Route exact path="/Congrats-Page" element={ <Congrats/>} />
+        <Route exact path="/referral" element={ <Congrats/>} />
 
       </Routes>
     </Router>

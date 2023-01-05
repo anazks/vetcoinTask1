@@ -11,20 +11,22 @@ function Congrats() {
 
   const [user] = useSearchParams();
   const [userData, setUserData] = useState('')
-  const UID = user.get('uid');
-  console.log(UID)
+  
+
   // async function fetching () {
    
   // }
     const { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
+    
     useEffect(() => {
+      const UID = user.get('uid');
+      console.log(UID)
       refetch({
-        "uid":UID
+          "uid" :UID
     })
     if(data){
-        setUserData(data)
+      setUserData(data)
         console.log(userData)
-        console.log(data)
       }
   },[])
     
@@ -65,10 +67,10 @@ function Congrats() {
                 </div>
                 <div className="social">
 
-                  <img src="/assets/images/twitter-ref.svg" alt="" />
-                  <img src="/assets/images/linkedin-ref.svg" alt="" />
-                  <img src="/assets/images/facebook.svg" alt="" />
-                  <img src="/assets/images/whatsapp-ref.svg" alt="" />
+                  <img src="/assets/images/twitter-ref.svg" style={{backgroundColor:"rgb(25, 167, 223)"}} alt="" />
+                  <img src="/assets/images/linkedin-ref.svg" style={{backgroundColor:"rgb(42, 58, 184)"}} alt="" />
+                  <img src="/assets/images/facebook.svg" style={{backgroundColor:"rgb(19, 8, 243)"}}  alt="" />
+                  <img src="/assets/images/whatsapp-ref.svg" style={{backgroundColor:"green"}}  alt="" />
 
                 </div>
               </div>

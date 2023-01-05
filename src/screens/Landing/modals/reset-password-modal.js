@@ -30,7 +30,7 @@ const ResetPasswordModal = ({ resetToken, userName }) => {
     isLoading,
     refetch: submitData,
   } = useApi('post', '/v2/account/reset_password', { type: 'ledger' });
-  console.log(data)
+  console.log( data)
   const { authAccount } = useUserAccount();
 
   const handleChange = (e) => {
