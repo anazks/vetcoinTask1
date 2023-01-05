@@ -17,19 +17,16 @@ function Congrats() {
    
   // }
     const { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
-    
     useEffect(() => {
       refetch({
-        uid:"HatYlhiktR3UXycJ3mn4"
+        "uid":UID
     })
-      if(data){
+    if(data){
         setUserData(data)
         console.log(userData)
         console.log(data)
       }
-    
-     
-    }, [])
+  },[])
     
   
 
