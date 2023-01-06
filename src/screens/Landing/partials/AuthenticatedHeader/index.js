@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   links
@@ -19,8 +19,10 @@ const LoggedHeader = () => {
     setMenuActive(prevState => !prevState);
   };
 
+  const navigate = useNavigate();
   const logout = () => {
     invalidateAccount();
+    navigate("/")
   }
 
   return (

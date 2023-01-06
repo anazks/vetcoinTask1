@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,useRef } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import {
   FacebookShareButton,
@@ -26,37 +26,30 @@ function Congrats() {
   
 
   const [user] = useSearchParams();
-  const [userData, setUserData] = useState('')
   const UID = user.get('uid');
   console.log(UID)
-  const  { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
-  console.log(data)
-  const { authAccount,account } = useUserAccount();
   
-  const fetching=()=>{
-    if(data){
-      setUserData(data)
-       console.log("data",data)
-       console.log("userdata",userData)
-       const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
-       if (data) {
-         authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
-       }
-       else {
-         alert(data)
-       }
-     }
-  }
+  const { authAccount,account } = useUserAccount();
+  const  { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
+  const singleRef = useRef(true);
+  
+
+  
 
  useEffect(() => {  
-    if(UID){
-      refetch({
-        "uid" :UID
-      })
-      fetching();
+  if(UID){
+    if(!data){
+      refetch({uid:UID})  
     }
-   
-  },[])
+    if(data && singleRef.current){
+      console.log("data",data)
+      const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
+       authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
+       singleRef.current=false;
+    }  
+      
+  } 
+  },[data])
 
 const refLink = `https://${referralLink}/register?ref=${account.referlink}`;
 const handleCopyClick = () => {
