@@ -22,8 +22,10 @@
 .clipBox{
     border-bottom:1px solid rgb(78, 75, 75) ;
 }
-.clipText{
-    font-size: 13px;
+
+.copy{
+    cursor: pointer;
+              width: 1.313rem;
 }
 .icons{
     margin-left: 13%;
@@ -40,8 +42,8 @@
 }
 .social img{
     border-radius: 200px;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     padding: 10px;
     margin-left: 5%;
 }
