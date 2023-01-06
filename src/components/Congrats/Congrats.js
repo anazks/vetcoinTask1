@@ -33,31 +33,29 @@ function Congrats() {
   console.log(data)
   const { authAccount,account } = useUserAccount();
   
+  const fetching=()=>{
+    if(data){
+      setUserData(data)
+       console.log("data",data)
+       console.log("userdata",userData)
+       const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
+       if (data) {
+         authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
+       }
+       else {
+         alert(data)
+       }
+     }
+  }
 
- 
-  // console.log(data);
- 
- 
-  
-  useEffect(() => {  
-    
+ useEffect(() => {  
     if(UID){
       refetch({
         "uid" :UID
       })
+      fetching();
     }
-    if(data){
-       setUserData(data)
-        console.log(data)
-        console.log(userData)
-        const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
-        if (data) {
-          authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
-        }
-        else {
-          alert(data)
-        }
-      }
+   
   },[])
 
 const refLink = `https://${referralLink}/register?ref=${account.referlink}`;

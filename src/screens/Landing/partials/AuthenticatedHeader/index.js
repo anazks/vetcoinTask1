@@ -218,7 +218,6 @@ const LoggedHeader = () => {
                   <a
                     className="dropdown-toggle__item d-flex align-items-center"
                     href={links.Refaral + account.ecosystem_uuid}
-                    target="_blank"
                     rel="noreferrer">
                     <span className="dropdown-toogle__item-icon">
                       <svg
