@@ -16,8 +16,8 @@ function Congrats() {
   console.log(UID)
   const  { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
   console.log(data)
-  const { authAccount } = useUserAccount();
-  
+  const { authAccount,account } = useUserAccount();
+
 
  
   // console.log(data);
@@ -47,10 +47,10 @@ function Congrats() {
   
 return (
   <PageLayout>
-       {(!data) &&
+       {(!account.ecosystem_uuid) &&
         <Header />
       }
-      {(data) &&
+      {(account.ecosystem_uuid) &&
         <AuthenticatedHeader />
       }
     
