@@ -5,41 +5,52 @@ import { useApi } from "../../utils/hooks";
 import PageLayout, { SectionContainer } from '../../screens/Landing/partials/Layout'
 import { AuthenticatedHeader, Header } from '../../screens/Landing/partials'
 import './congrats.scss'
+import useUserAccount from '../../hooks/useUserAccount';
+import { USERDATA } from '../../utils/constants';
 
 
 function Congrats() {
-
   const [user] = useSearchParams();
   const [userData, setUserData] = useState('')
+  const UID = user.get('uid');
+  console.log(UID)
+  const  { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
+  console.log(data)
+  const { authAccount } = useUserAccount();
   
 
-  // async function fetching () {
-   
-  // }
-    const { data,refetch } =   useApi('post', `/v2/account/loginWithUID`, { type: 'ledger' },);
-    
-    useEffect(() => {
-      const UID = user.get('uid');
-      console.log(UID)
-      refetch({
-          "uid" :UID
+ 
+  // console.log(data);
+ 
+ 
+  
+  useEffect(() => {  
+    refetch({
+      "uid" :UID
     })
     if(data){
-      setUserData(data)
-        console.log(userData)
+       setUserData(data)
+        console.log(data)
+        console.log("userData...",userData)
+        const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
+        USERDATA.userData = data
+        if (ecosystemUuid) {
+          authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
+          document.querySelector("#membermodal .close")?.click();
+        }
+        else {
+          alert(data)
+        }
       }
   },[])
-    
+
   
-
-
-  return (
-
-    <PageLayout>
-       {(!userData.ecosystem_uuid) &&
+return (
+  <PageLayout>
+       {(!data) &&
         <Header />
       }
-      {(userData.ecosystem_uuid) &&
+      {(data) &&
         <AuthenticatedHeader />
       }
     
@@ -63,7 +74,6 @@ function Congrats() {
                 <p className='smallText'>Move up the waitinglist when others join uisng your referral link</p>
                 <div className='clipBox'>
                   <p className='clipText'>https://localhost/waiting-list/register?ref=ob1Ttsyl<AiFillCopy className='icons' /> </p>
-
                 </div>
                 <div className="social">
 

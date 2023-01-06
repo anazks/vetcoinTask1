@@ -141,3 +141,4 @@ ResetPasswordModal.propTypes = {
   resetToken: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired
 };
+
