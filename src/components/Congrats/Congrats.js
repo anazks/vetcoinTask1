@@ -11,7 +11,14 @@ import PageLayout, { SectionContainer } from '../../screens/Landing/partials/Lay
 import { AuthenticatedHeader, Header } from '../../screens/Landing/partials'
 import './congrats.scss'
 import useUserAccount from '../../hooks/useUserAccount';
-import { BASENAME } from '../../utils/constants';
+import { BASENAME, USERDATA } from '../../utils/constants';
+// import changePasswordSuccess from '../../screens/Landing/modals/changePasswordSuccess';
+import ChangePasswordModal from '../../screens/Landing/modals/changePasswordModal';
+import ChangePassword from '../../screens/Landing/modals/changePassword';
+import { PASSWORD_MODAL, RANK_MODAL } from '../../screens/Landing/modals/constants';
+import RankModal from '../../screens/Landing/modals/rankModal';
+import RankContent from '../../screens/Landing/modals/rankContent';
+// import { MEMBER_MODAL } from '../../screens/Landing/modals/constants';
 
 
 const IS_DEV = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
@@ -22,7 +29,10 @@ const SHARING_MESSAGE =
 const HASHTAG = 'yourcryptoyourlife';
 function Congrats() {
   const [copied, setCopied] = useState(false);
+  const [passwordModal, setPasswordModal] = useState(PASSWORD_MODAL[0]);
+  const [rankContent, setRankContent] = useState(RANK_MODAL[0]);
 
+ 
   
 
   const [user] = useSearchParams();
@@ -43,13 +53,19 @@ function Congrats() {
     }
     if(data && singleRef.current){
       console.log("data",data)
+      USERDATA.userData = data
       const { email, firstName, referlink,created_at: createdAt, ecosystem_uuid:ecosystemUuid } = data;
        authAccount(email, firstName, referlink, createdAt, ecosystemUuid);
        singleRef.current=false;
+      //  onChangeScreen(MEMBER_MODAL[3]);
+
+        // Nick - Update to close modal instead of open success modal
+        document.querySelector("#membermodal .close")?.click();
     }  
       
   } 
   },[data])
+
 
 const refLink = `https://${referralLink}/register?ref=${account.referlink}`;
 const handleCopyClick = () => {
@@ -63,7 +79,7 @@ return (
        {(!account.ecosystem_uuid) &&
         <Header />
       }
-      {(account.ecosystem_uuid) &&
+      {(!!account.ecosystem_uuid) &&
         <AuthenticatedHeader />
       }
     
@@ -143,8 +159,19 @@ return (
 
       </SectionContainer>
 
+      <ChangePasswordModal
+        screens={PASSWORD_MODAL}
+        currentScreen={passwordModal}
+        changeScreen={setPasswordModal}>
+        <ChangePassword onChangeScreen={setPasswordModal} />
+        <changePasswordSuccess onChangeScreen={setPasswordModal} />
+      </ChangePasswordModal>
 
+      <RankModal screens={RANK_MODAL} currentScreen={rankContent}>
+        <RankContent onChangeScreen={setRankContent} />
+      </RankModal>
     </PageLayout>
+
 
   )
 }
